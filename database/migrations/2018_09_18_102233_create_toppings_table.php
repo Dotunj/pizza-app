@@ -15,7 +15,11 @@ class CreateToppingsTable extends Migration
     {
         Schema::create('toppings', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('pizza_id')->unsigned();
+            $table->string('name');
             $table->timestamps();
+
+            $table->foreign('pizza_id')->references('id')->on('pizzas')->onDelete('cascade');
         });
     }
 
